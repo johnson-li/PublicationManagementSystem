@@ -10,11 +10,14 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class AbstractBook {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String bookName;
 
     private String author;
 
-    @Id
     private long ISBN;
 
     public long getISBN() {

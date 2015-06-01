@@ -10,6 +10,8 @@ public interface BookManagementService {
 
     PaperBook getPaperBookByISBN(long isbn);
 
+    PaperBook getEBookByISBN(long isbn);
+
     void addPaperBook(PaperBook paperBook);
 
     void addEBook(EBook eBook);

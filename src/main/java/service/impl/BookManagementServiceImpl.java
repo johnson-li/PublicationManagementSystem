@@ -13,7 +13,7 @@ import java.util.Collection;
 /**
  * Created by johnson on 5/28/15.
  */
-@Service
+@Service(value = "bookManagementService")
 public class BookManagementServiceImpl implements BookManagementService {
 
     @Autowired
@@ -24,6 +24,17 @@ public class BookManagementServiceImpl implements BookManagementService {
         Collection<AbstractBook> collection = bookDao.getBookByISBN(isbn);
         for (AbstractBook book: collection) {
             if (book instanceof PaperBook) {
+                return (PaperBook) book;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public PaperBook getEBookByISBN(long isbn) {
+        Collection<AbstractBook> collection = bookDao.getBookByISBN(isbn);
+        for (AbstractBook book : collection) {
+            if (book instanceof EBook) {
                 return (PaperBook)book;
             }
         }

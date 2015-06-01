@@ -1,6 +1,5 @@
 package entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -9,10 +8,18 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PAPER_BOOK")
-public class PaperBook extends AbstractBook{
+public class PaperBook extends AbstractBook {
 
-    @Column
     private int num;
+    private int readable;
+
+    public int getReadable() {
+        return readable;
+    }
+
+    public void setReadable(int readable) {
+        this.readable = readable;
+    }
 
     public int getNum() {
         return num;
