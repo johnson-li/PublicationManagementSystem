@@ -86,6 +86,8 @@ public class ReadingBookTest {
 
     @Test
     public void test4CollectComments() throws Exception{
+
+        //TODO failed to lazily initialize a collection of role: entity.AbstractBook.comments, could not initialize proxy - no Session
         PaperBook paperBook = bookManagementService.getPaperBookByISBN(1234567890L);
 
         //collect comments and show

@@ -17,7 +17,7 @@ import java.util.HashSet;
  * Created by johnson on 6/3/15.
  */
 @Repository
-public class CommentDaoImpl implements CommentDao{
+public class CommentDaoImpl implements CommentDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -42,9 +42,7 @@ public class CommentDaoImpl implements CommentDao{
     @Transactional
     public AbstractBook attachComment(AbstractBook book, AbstractComment comment) {
         Collection<AbstractComment> comments = book.getComments();
-        if (comments == null) {
-            comments = new HashSet<>();
-        }
+        if (comments == null) comments = new HashSet<>();
         comments.add(comment);
         book.setComments(comments);
         sessionFactory.getCurrentSession().update(book);

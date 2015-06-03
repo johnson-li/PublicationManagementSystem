@@ -20,6 +20,22 @@ public class Borrowable {
 
     int borrowableNumber;
 
+    public PaperBook getPaperBook() {
+        return paperBook;
+    }
+
+    public void setPaperBook(PaperBook paperBook) {
+        this.paperBook = paperBook;
+    }
+
+    public BorrowableStatus getBorrowableStatus() {
+        return borrowableStatus;
+    }
+
+    public void setBorrowableStatus(BorrowableStatus borrowableStatus) {
+        this.borrowableStatus = borrowableStatus;
+    }
+
     public enum BorrowableStatus {
         AVAILABLE, UNAVAILABLE
     }

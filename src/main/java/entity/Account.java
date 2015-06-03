@@ -16,4 +16,10 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @OneToMany
+    Collection<BorrowRecord> borrowRecords;
+
+    @OneToMany
+    Collection<Borrowable> borrowables;
 }
