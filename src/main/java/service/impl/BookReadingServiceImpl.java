@@ -20,31 +20,16 @@ public class BookReadingServiceImpl implements BookReadingService {
     @Autowired
     private ReadingDao readingDao;
 
-    @Autowired
-    private BookManagementService bookManagementService;
-
     @Override
     public Reading stopReading(Reading reading) {
-        return null;
+        reading.setEndDate(new Date());
+        readingDao.updateReading(reading);
+        return reading;
     }
 
     @Override
-    public Reading startReading(long isbn, Reading.ReadingBookType readingBookType) {
-        Reading reading = readingDao.generatingReading();
-        AbstractBook abstractBook;
-        switch (readingBookType) {
-            case E_BOOK:
-                throw new UnsupportedReadingBookType(readingBookType);
-//                break;
-            case PAPER_BOOK:
-                abstractBook = bookManagementService.getPaperBookByISBN(isbn);
-                break;
-            default:
-                throw new UnsupportedReadingBookType(readingBookType);
-        }
-        reading.setBook(abstractBook);
-        reading.setStartDate(new Date());
-        readingDao.updateReading(reading);
+    public Reading startReading(AbstractBook book) {
+        Reading reading = readingDao.generatingReading(new Date(), book);
         return reading;
     }
 }

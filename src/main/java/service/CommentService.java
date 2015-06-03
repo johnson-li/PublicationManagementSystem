@@ -1,8 +1,10 @@
 package service;
 
 import entity.AbstractBook;
-import entity.Comment;
+import entity.AbstractComment;
+import entity.URLComment;
 
+import java.net.URL;
 import java.util.Collection;
 
 /**
@@ -10,7 +12,9 @@ import java.util.Collection;
  */
 public interface CommentService {
 
-    Collection<Comment> collectComment(AbstractBook book);
+    Collection<AbstractComment> collectComment(AbstractBook book);
 
-    void recordComment(AbstractBook book, Collection<Comment> comments);
+    void recordComment(AbstractBook book, AbstractComment... abstractComments);
+
+    URLComment getUrlComment(URL url);
 }

@@ -10,7 +10,7 @@ public class UnsupportedReadingBookType extends RuntimeException {
         super();
     }
 
-    public UnsupportedReadingBookType(Reading.ReadingBookType readingBookType) {
-        super(readingBookType.name());
+    public UnsupportedReadingBookType(String readingBookType) {
+        super(readingBookType);
     }
 }

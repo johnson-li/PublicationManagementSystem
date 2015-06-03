@@ -1,5 +1,6 @@
 package service;
 
+import entity.AbstractBook;
 import entity.Reading;
 
 /**
@@ -7,7 +8,7 @@ import entity.Reading;
  */
 public interface BookReadingService {
 
-    Reading startReading(long isbn, Reading.ReadingBookType readingBookType);
+    Reading startReading(AbstractBook book);
 
     Reading stopReading(Reading reading);
 }

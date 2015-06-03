@@ -1,7 +1,6 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.net.URL;
 
 /**

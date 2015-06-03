@@ -1,7 +1,6 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by johnson on 5/28/15.

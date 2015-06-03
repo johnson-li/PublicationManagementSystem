@@ -20,17 +20,23 @@ sourceSets {
         java {
             srcDirs 'src/test/java'
         }
+        resources {
+            srcDirs 'src/test/resources'
+        }
     }
 }
 
 dependencies {
+    def springVersion = '4.1.6.RELEASE'
+    def hibernateVersion = '4.3.10.Final'
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile "org.springframework:spring-test:$springVersion"
 
     compile 'org.slf4j:slf4j-api:1.7.12'
     compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.2'
     compile 'org.apache.logging.log4j:log4j-core:2.2'
 
-    def springVersion = '4.1.6.RELEASE'
     compile "org.springframework:spring-core:$springVersion"
     compile "org.springframework:spring-tx:$springVersion"
     compile "org.springframework:spring-jdbc:$springVersion"
@@ -40,7 +46,6 @@ dependencies {
     compile 'commons-dbcp:commons-dbcp:1.4'
     compile 'mysql:mysql-connector-java:5.1.35'
 
-    def hibernateVersion = '4.3.10.Final'
     compile "org.hibernate:hibernate-core:$hibernateVersion"
 }
 
