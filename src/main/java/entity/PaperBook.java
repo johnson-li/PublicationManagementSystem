@@ -1,6 +1,7 @@
 package entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by johnson on 5/28/15.
@@ -10,15 +11,6 @@ import javax.persistence.*;
 public class PaperBook extends AbstractBook {
 
     private int num;
-    private int readable;
-
-    public int getReadable() {
-        return readable;
-    }
-
-    public void setReadable(int readable) {
-        this.readable = readable;
-    }
 
     public int getNum() {
         return num;

@@ -10,6 +10,38 @@ import java.util.Date;
 @Table(name = "BORROW_RECORD")
 public class BorrowRecord {
 
+    public Date getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(Date borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public Borrowable getBorrowable() {
+        return borrowable;
+    }
+
+    public void setBorrowable(Borrowable borrowable) {
+        this.borrowable = borrowable;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     Date borrowDate;
     Date returnDate;
 

@@ -9,5 +9,5 @@ public interface BorrowRecordDao {
 
     BorrowRecord createRecord();
 
-    BorrowRecord updateRecord();
+    BorrowRecord updateRecord(BorrowRecord borrowRecord);
 }

@@ -10,15 +10,21 @@ import java.util.Collection;
 @Table(name = "ACCOUNT")
 public class Account {
 
-    String userName;
-    @OneToMany
-    Collection<Friend> friends;
+    @OneToOne
+    Friend friend;
+
+    public Friend getFriend() {
+        return friend;
+    }
+
+    public void setFriend(Friend friend) {
+        this.friend = friend;
+    }
+
     @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @OneToMany
-    Collection<BorrowRecord> borrowRecords;
 
     @OneToMany
     Collection<Borrowable> borrowables;

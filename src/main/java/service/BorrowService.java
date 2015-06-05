@@ -1,5 +1,7 @@
 package service;
 
+import entity.Account;
+import entity.BorrowRecord;
 import entity.Borrowable;
 import entity.PaperBook;
 
@@ -10,5 +12,9 @@ public interface BorrowService {
 
     Borrowable getBorrowable(PaperBook paperBook);
 
-    Borrowable borrowBook(PaperBook paperBook);
+    BorrowRecord borrowBook(Borrowable borrowable, Account account);
+
+    Borrowable addBorrowable(PaperBook paperBook);
+
+    BorrowRecord returnBook(BorrowRecord borrowRecord, Borrowable borrowable);
 }

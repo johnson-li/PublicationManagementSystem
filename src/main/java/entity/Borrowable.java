@@ -18,6 +18,14 @@ public class Borrowable {
     @OneToOne
     PaperBook paperBook;
 
+    public int getBorrowableNumber() {
+        return borrowableNumber;
+    }
+
+    public void setBorrowableNumber(int borrowableNumber) {
+        this.borrowableNumber = borrowableNumber;
+    }
+
     int borrowableNumber;
 
     public PaperBook getPaperBook() {
@@ -34,6 +42,21 @@ public class Borrowable {
 
     public void setBorrowableStatus(BorrowableStatus borrowableStatus) {
         this.borrowableStatus = borrowableStatus;
+    }
+
+    public void decrease() {
+        if (borrowableNumber == 0) {
+
+        }
+        borrowableNumber--;
+        if (borrowableNumber == 0) {
+            borrowableStatus = BorrowableStatus.UNAVAILABLE;
+        }
+    }
+
+    public void increate() {
+        borrowableNumber++;
+        borrowableStatus = BorrowableStatus.AVAILABLE;
     }
 
     public enum BorrowableStatus {

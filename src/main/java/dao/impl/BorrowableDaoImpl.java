@@ -22,9 +22,24 @@ public class BorrowableDaoImpl implements BorrowableDao{
     @Override
     @Transactional
     public Borrowable getBorrowable(PaperBook paperBook) {
-        String hql = "from entity.Borrowable where entity.Borrowable.paperBook = :paperBook";
+        String hql = "from entity.Borrowable where paperBook = :paperBook";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("paperBook", paperBook);
         List list = query.list();
         return list.size() > 0 ? (Borrowable)list.get(0) : null;
+    }
+
+    @Override
+    @Transactional
+    public Borrowable addBorrowable(PaperBook paperBook, int num) {
+        Borrowable borrowable = new Borrowable();
+        borrowable.setPaperBook(paperBook);
+        if (num > 0)
+            borrowable.setBorrowableStatus(Borrowable.BorrowableStatus.AVAILABLE);
+        else
+            borrowable.setBorrowableStatus(Borrowable.BorrowableStatus.UNAVAILABLE);
+        borrowable.setBorrowableNumber(num);
+        sessionFactory.getCurrentSession().save(borrowable);
+        return borrowable;
     }
 }

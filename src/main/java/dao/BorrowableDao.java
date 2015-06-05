@@ -9,4 +9,6 @@ import entity.PaperBook;
 public interface BorrowableDao {
 
     Borrowable getBorrowable(PaperBook paperBook);
+
+    Borrowable addBorrowable(PaperBook paperBook, int num);
 }
