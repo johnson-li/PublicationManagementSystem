@@ -23,7 +23,6 @@ import java.net.URL;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/spring-config.xml")
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ReadingBookTest {
     static Logger logger = LoggerFactory.getLogger(ReadingBookTest.class);
 
@@ -39,8 +38,8 @@ public class ReadingBookTest {
     @Autowired
     CommentService commentService;
 
-    @Test @Ignore
-    public void test1AddBook() throws Exception{
+    @Test
+    public void testAddBook() throws Exception {
         EBook eBook = new EBook();
         eBook.setUrl(new URL("http://baidu.com"));
         eBook.setAuthor("johnson");
@@ -56,8 +55,8 @@ public class ReadingBookTest {
         bookManagementService.addPaperBook(paperBook);
     }
 
-    @Test @Ignore
-    public void test2ReadBook() throws Exception {
+    @Test
+    public void testReadBook() throws Exception {
         PaperBook paperBook = bookManagementService.getPaperBookByISBN(1234567890L);
         Reading reading = bookReadingService.startReading(paperBook);
         logger.info("start reading at time " + reading.getStartDate());
@@ -67,8 +66,11 @@ public class ReadingBookTest {
         logger.info("stop reading at time " + reading.getEndDate());
     }
 
-    @Test @Ignore
-    public void test3TakeNotes() throws Exception{
+    /**
+     * this is the integration test for reading book including taking notes
+     */
+    @Test
+    public void testTakeNotes() throws Exception {
         PaperBook paperBook = bookManagementService.getPaperBookByISBN(1234567890L);
         Reading reading = bookReadingService.startReading(paperBook);
         logger.info("start reading at time " + reading.getStartDate());
@@ -84,19 +86,20 @@ public class ReadingBookTest {
         logger.info("stop reading at time " + reading.getEndDate());
     }
 
+    /**
+     *  This is the integration test for collect comments
+     */
     @Test
-    public void test4CollectComments() throws Exception{
+    public void testCollectComments() throws Exception {
 
-        //TODO failed to lazily initialize a collection of role: entity.AbstractBook.comments, could not initialize proxy - no Session
-        PaperBook paperBook = bookManagementService.getPaperBookByISBN(1234567890L);
+        PaperBook paperBook = bookManagementService.getPaperBookByISBN(9787111075752L);
 
         //collect comments and show
         URLComment urlComment1 = commentService.getUrlComment(new URL("http://baidu.com"));
         URLComment urlComment2 = commentService.getUrlComment(new URL("http://google.com"));
         commentService.recordComment(paperBook, urlComment1, urlComment2);
-        for (AbstractComment abstractComment: commentService.collectComment(paperBook)) {
+        for (AbstractComment abstractComment : commentService.collectComment(paperBook)) {
             logger.info(abstractComment.getComment().toString());
         }
-
     }
 }

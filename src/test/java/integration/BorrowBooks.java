@@ -5,7 +5,6 @@ import entity.Borrowable;
 import entity.Friend;
 import entity.PaperBook;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -36,13 +35,13 @@ public class BorrowBooks {
     @Autowired
     FriendManagementService friendManagementService;
 
-    @Test @Ignore
+    @Test
     public void testSetBorrowable() {
         PaperBook paperBook = bookManagementService.getPaperBookByISBN(1234567890L);
         borrowService.addBorrowable(paperBook);
     }
 
-    @Test @Ignore
+    @Test
     public void testGetBorrowStatus() {
         PaperBook paperBook = bookManagementService.getPaperBookByISBN(1234567890L);
         Borrowable borrowable = borrowService.getBorrowable(paperBook);
@@ -50,19 +49,22 @@ public class BorrowBooks {
         logger.info(borrowable.getBorrowableStatus().name());
     }
 
-    @Test @Ignore
+    @Test
     public void testAddFriend() {
         friendManagementService.addFriend("jj");
     }
 
-    @Test @Ignore
+    @Test
     public void testGetFriend() {
         Friend friend = friendManagementService.getFriend("jj");
         System.out.println(friend);
     }
 
+    /**
+     * This is the integration test for borrow book
+     */
     @Test
-    public void testBorrowBook() throws Exception{
+    public void testBorrowBook() throws Exception {
         Friend friend = friendManagementService.getFriend("jj");
         PaperBook paperBook = bookManagementService.getPaperBookByISBN(1234567890L);
         Borrowable borrowable = borrowService.getBorrowable(paperBook);

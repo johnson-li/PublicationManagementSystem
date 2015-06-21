@@ -32,6 +32,7 @@ public class CommentServiceImpl implements CommentService{
     public URLComment getUrlComment(URL url) {
         URLComment urlComment = commentDao.createUrlComment(url);
         initUrlComment(urlComment);
+        commentDao.updateComment(urlComment);
         return urlComment;
     }
 

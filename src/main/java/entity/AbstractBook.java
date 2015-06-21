@@ -7,11 +7,10 @@ import java.util.Collection;
  * Created by johnson on 5/28/15.
  */
 @Entity
-@Table(name = "ABSTRACT_BOOK")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class AbstractBook {
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     Collection<AbstractComment> comments;
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
