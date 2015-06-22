@@ -1,10 +1,12 @@
 package entity;
 
 import exception.UnsupportedReadingBookType;
+import service.PersistenceService;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 /**
  * Created by johnson on 6/1/15.
@@ -66,5 +68,22 @@ public class Reading {
 
     public void setNotes(Collection<Note> notes) {
         this.notes = notes;
+    }
+
+    public Note takeNote(String content) {
+        if (notes == null) notes = new HashSet<>();
+        Note note = new Note();
+        note.setNoteDate(new Date());
+        note.setContent(new StringBuffer().append(content));
+        PersistenceService.getInstance().save(note);
+        notes.add(note);
+        PersistenceService.getInstance().update(this);
+        return note;
+    }
+
+    public Note takeNote(Note note, String content) {
+        note.content.append("\n").append(content);
+        PersistenceService.getInstance().update(note);
+        return note;
     }
 }

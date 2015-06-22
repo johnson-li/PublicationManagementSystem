@@ -48,6 +48,17 @@ public class BorrowRecord {
     @ManyToOne
     Borrowable borrowable;
 
+    @Override
+    public String toString() {
+        return "BorrowRecord{" +
+                "borrowDate=" + borrowDate +
+                ", returnDate=" + returnDate +
+                ", borrowable=" + borrowable +
+                ", account=" + account +
+                ", id=" + id +
+                '}';
+    }
+
     @ManyToOne
     Account account;
 

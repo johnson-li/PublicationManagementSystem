@@ -1,5 +1,8 @@
 package entity;
 
+import exception.BorrowZeroBookNumException;
+import service.PersistenceService;
+
 import javax.persistence.*;
 
 /**
@@ -44,22 +47,35 @@ public class Borrowable {
         this.borrowableStatus = borrowableStatus;
     }
 
-    public void decrease() {
+    public void borrow() {
         if (borrowableNumber == 0) {
-
+            throw new BorrowZeroBookNumException();
         }
         borrowableNumber--;
         if (borrowableNumber == 0) {
             borrowableStatus = BorrowableStatus.UNAVAILABLE;
         }
+        PersistenceService.getInstance().update(this);
     }
 
-    public void increate() {
+    boolean checkBorrowable() {
+        return getBorrowableNumber() > 0 &&
+                getBorrowableStatus().equals(Borrowable.BorrowableStatus.AVAILABLE);
+    }
+
+    public void giveBack() {
         borrowableNumber++;
         borrowableStatus = BorrowableStatus.AVAILABLE;
+        PersistenceService.getInstance().update(this);
     }
 
     public enum BorrowableStatus {
         AVAILABLE, UNAVAILABLE
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Borrowable borrowable = (Borrowable)obj;
+        return borrowable.id == id;
     }
 }

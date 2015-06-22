@@ -33,7 +33,4 @@
             </props>
         </property>
     </bean>
-
-    <import resource="spring-dao-config.xml" />
-    <import resource="spring-service-config.xml" />
 </beans>

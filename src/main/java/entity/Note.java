@@ -33,4 +33,6 @@ public class Note {
     public void setNoteDate(Date noteDate) {
         this.noteDate = noteDate;
     }
+
+
 }
